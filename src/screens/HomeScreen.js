@@ -13,6 +13,10 @@ export default function HomeScreen({ navigation }) {
           title="Go to Courses Information"
           onPress={() => navigation.navigate('Course Informations')}
         />
+         <Button 
+          title="Go to Counter Screen"
+          onPress={() => navigation.navigate('Counter')}
+        />
       </View>
     );
   }
