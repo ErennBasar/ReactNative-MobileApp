@@ -21,6 +21,10 @@ export default function HomeScreen({ navigation }) {
           title="Go to Box Screen"
           onPress={() => navigation.navigate('Boxes')}
         />
+        <Button 
+          title="Go to ColorChangeScreen"
+          onPress={() => navigation.navigate('ColorChangeScreen')}
+        />
       </View>
     );
   }
