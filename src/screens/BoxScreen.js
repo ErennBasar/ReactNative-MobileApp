@@ -1,10 +1,24 @@
-import { StyleSheet, Text, View ,Button,FlatList} from 'react-native'
-import React,{useState} from 'react'
+import { StyleSheet, Text, View ,Button,FlatList, ScrollView} from 'react-native'
+import React,{useReducer} from 'react'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+const reducer = (state,action) => {
+
+  switch (action.type) {
+      case 'add':
+          return [...state,action.payload]
+      default:
+          return state;
+  }
+}
+
+
 
 const BoxScreen = () => {
 
-    const [colors,setColors] = useState([]);
+
+    const [state,dispatch]  = useReducer(reducer,[]);
+    //const [colors,setColors] = useState([]);
 
     const randomColor = () => {
         const red = Math.floor(Math.random() * 256);
@@ -17,21 +31,23 @@ const BoxScreen = () => {
     <View>
       <Text>BoxScreen</Text>
       <Button title="Add Box" onPress={()=>{
-        setColors([...colors,randomColor()]);
+       
+       dispatch({type:'add',payload:randomColor()})
+       //setColors([...colors,randomColor()]);
       }} 
       ></Button>
       <FlatList
-      data={colors}
+      data={state}
         renderItem={({item})=>{
            return(
-              <View
+              <ScrollView
                style={{
                    height:100,
                    width:100,
                    backgroundColor:item,
                    marginVertical:10
                 }}
-              ></View>
+              ></ScrollView>
             ) 
         }}
       ></FlatList>
