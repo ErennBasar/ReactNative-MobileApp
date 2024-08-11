@@ -6,24 +6,28 @@ export default function HomeScreen({ navigation }) {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
         <Button
-          title="Go to Courses"
+          title="My Courses "
           onPress={() => navigation.navigate('Courses')}
         />
         <Button 
-          title="Go to Courses Information"
+          title="Course Informations"
           onPress={() => navigation.navigate('Course Informations')}
         />
          <Button 
-          title="Go to Counter Screen"
+          title="Counter App"
           onPress={() => navigation.navigate('Counter')}
         />
          <Button 
-          title="Go to Box Screen"
+          title="Box App"
           onPress={() => navigation.navigate('Boxes')}
         />
         <Button 
-          title="Go to ColorChangeScreen"
+          title="Change Color"
           onPress={() => navigation.navigate('ColorChangeScreen')}
+        />
+        <Button 
+          title="Go to Password Screen"
+          onPress={() => navigation.navigate('PasswordScreen')}
         />
       </View>
     );
