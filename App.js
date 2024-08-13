@@ -11,6 +11,9 @@ import ColorChangeScreen from './src/screens/ColorChangeScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import LocationScreen from './src/screens/LocationScreen';
+import TravelAppHomeScreen from './src/screens/TravelAppHomeScreen';
+import CityScreen from './src/screens/CityScreen';
+import TravelAppInformation from '../my-app/components/TravelAppInformation';
 
 
 
@@ -30,6 +33,8 @@ function App() {
         <Stack.Screen name="ColorChangeScreen" component={ColorChangeScreen} />
         <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
         <Stack.Screen name="LocationScreen" component={LocationScreen} />
+        <Stack.Screen name="TravelApp" component={TravelAppHomeScreen} />
+        <Stack.Screen name="CityScreen" component={CityScreen} />
       </Stack.Navigator>
       
     </NavigationContainer>

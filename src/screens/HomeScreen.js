@@ -56,6 +56,13 @@ export default function HomeScreen({ navigation }) {
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Location Screen</Text>
           </TouchableOpacity>
+          <TouchableOpacity 
+              
+              style={[styles.button, {backgroundColor:'#fff'}]} 
+              onPress={() => navigation.navigate('TravelApp')}
+              >
+            <Text style={[styles.buttonText,{color:'black'}]}>Travel App</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
