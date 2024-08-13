@@ -10,6 +10,8 @@ import BoxScreen from './src/screens/BoxScreen';
 import ColorChangeScreen from './src/screens/ColorChangeScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import LocationScreen from './src/screens/LocationScreen';
+
 
 
 
@@ -27,11 +29,16 @@ function App() {
         <Stack.Screen name="Boxes" component={BoxScreen} />
         <Stack.Screen name="ColorChangeScreen" component={ColorChangeScreen} />
         <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
+        <Stack.Screen name="LocationScreen" component={LocationScreen} />
       </Stack.Navigator>
+      
     </NavigationContainer>
+    
   );
 }
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  
+});
