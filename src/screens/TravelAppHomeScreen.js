@@ -36,7 +36,7 @@ const TravelAppHomeScreen = ({navigation}) => {
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity 
                                 style={[styles.button]} 
-                                onPress={() => navigation.navigate('CityScreen',{city:item})}
+                                onPress={() => navigation.navigate('CityInfoScreen',{city:item})}
                                 >
                                 <Text style={[styles.buttonText]}>{item}</Text>
                             </TouchableOpacity>

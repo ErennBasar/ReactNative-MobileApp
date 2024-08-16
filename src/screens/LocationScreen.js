@@ -5,7 +5,7 @@ import * as Location from 'expo-location';
 
 
 
-const LocationScreen = () => {
+const LocationScreen = ({onLocationUpdate,onCityUpdate}) => {
 
     const [mapRegion,setMapRegion] = useState({
         latitude: 37.78825,
@@ -22,27 +22,35 @@ const LocationScreen = () => {
             let{status} = await Location.requestForegroundPermissionsAsync();
             if(status !== 'granted'){
                 setErrorMsg('Permission to access location was denied');
-                
+                return;
             }
             let location = await Location.getCurrentPositionAsync({});
+            const { latitude, longitude } = location.coords;
+
             setMapRegion({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
+                latitude,
+                longitude, 
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             });
             console.log(location.coords.latitude,location.coords.longitude);
 
+            if (onLocationUpdate) {
+                onLocationUpdate({ latitude, longitude });
+              }
             // Ters geokodlama işlemi
             let reverseGeocode = await Location.reverseGeocodeAsync({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                latitude,
+                longitude, 
             });
 
             if (reverseGeocode.length > 0) {
-                setCity(reverseGeocode[0].city);
-                console.log("City: ", reverseGeocode[0].city);
-            }
+                const cityName = reverseGeocode[0].city;
+                setCity(cityName);
+                if (onCityUpdate) {
+                  onCityUpdate(cityName);
+                }
+              }
 
         } catch (error) {
             console.error("Error getting location: ", error);

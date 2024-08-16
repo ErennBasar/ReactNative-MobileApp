@@ -59,7 +59,7 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity 
               
               style={[styles.button, {backgroundColor:'#fff'}]} 
-              onPress={() => navigation.navigate('TravelApp')}
+              onPress={() => navigation.navigate('CityScreen')}
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Travel App</Text>
           </TouchableOpacity>

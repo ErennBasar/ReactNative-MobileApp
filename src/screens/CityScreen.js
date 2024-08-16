@@ -1,24 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const CityScreen = ({route}) => {
-
-    const {city} = route.params; // Get city name from route params
+const CityScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
-        <Text style={styles.cityText}>{city}</Text> 
+    <View>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('CityInformationScreen', {cityName:'Ankara'})}
+              >
+            <Text style={[styles.buttonText]}>Ankara</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('CityInformationScreen',{cityName:'Istanbul'})}
+              >
+            <Text style={[styles.buttonText]}>istanbul</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('CityInformationScreen',{cityName:'Efeler'})}
+              >
+            <Text style={[styles.buttonText]}>Aydın</Text>
+      </TouchableOpacity>
     </View>
   )
 }
 
 export default CityScreen
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-    },
-    cityText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-})
+const styles = StyleSheet.create({})
