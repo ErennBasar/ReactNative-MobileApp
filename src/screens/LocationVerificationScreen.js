@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View,Button } from 'react-native'
-import React, { useState } from 'react';
+import { StyleSheet, Text, View,Button,Alert } from 'react-native'
+import React, { useState,useEffect  } from 'react';
 import LocationScreen from './LocationScreen';
 
 const LocationVerificationScreen = ({ route, navigation }) => {
-    const { cityName } = route.params;
+    const { cityName,onVerify  } = route.params;
     const [location, setLocation] = useState(null);
     const [city, setCity] = useState(null);
-    //const [isLocationVerified, setIsLocationVerified] = useState(false);
+    const [isLocationVerified, setIsLocationVerified] = useState(false);
+    
   
     const handleLocationUpdate = (location) => {
       setLocation(location);
@@ -21,15 +22,19 @@ const LocationVerificationScreen = ({ route, navigation }) => {
   
     const verifyLocation = (location, city) => {
       if (city && city.toLowerCase() === cityName.toLowerCase()) {
-       // setIsLocationVerified(true);
+        setIsLocationVerified(true);
         Alert.alert('Konum Doğrulandı', `Konumunuz ${city} ile eşleşiyor.`);
-        onVerify(true); // Doğrulama fonksiyonunu çağır
+        if (onVerify){
+          onVerify(true);  // Checkbox'ı işaretle
+        }
         navigation.goBack();
       } else {
-        //setIsLocationVerified(false);
+        setIsLocationVerified(false);
         Alert.alert('Konum Doğrulanamadı', `Konumunuz ${city} ile eşleşmiyor.`);
-        onVerify(false); // Doğrulama fonksiyonunu çağır
-    }
+        if (onVerify) {
+          onVerify(false); // Checkbox'ı kaldır
+        }
+      }
       
     };
   
@@ -39,6 +44,14 @@ const LocationVerificationScreen = ({ route, navigation }) => {
         <LocationScreen onLocationUpdate={handleLocationUpdate} onCityUpdate={handleCityUpdate} />
         {location && <Text style={styles.locationText}>Mevcut Konum: {location.latitude}, {location.longitude}</Text>}
         {city && <Text style={styles.cityText}>Bulunduğunuz şehir: {city}</Text>}
+
+        {isLocationVerified && (
+        <Button
+          title="Doğrulandı"
+          onPress={() => Alert.alert('Doğrulandı', 'Konumunuz başarıyla doğrulandı.')}
+          color="green"
+        />
+      )}
         
         <Button title="Geri Dön" onPress={() => navigation.goBack()} />
       </View>

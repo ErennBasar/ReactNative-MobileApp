@@ -23,8 +23,8 @@ const CityInformationScreen = ({ route,navigation }) => {
       <LocationScreen />
       <View style={styles.checkboxContainer}>
         <CheckBox
-          value={isLocationVerified}
-          onValueChange={setIsLocationVerified} 
+          checked={isLocationVerified}
+          disabled={true} // Checkbox'ı devre dışı bırak, kullanıcı tıklayamaz 
         />
          <Text>Konum Onaylandı</Text>
       </View>
@@ -36,7 +36,7 @@ export default CityInformationScreen;
 
 const styles = StyleSheet.create({
   container: {
-    
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -45,13 +45,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    
   },
   locationText: {
     fontSize: 16,
     marginTop: 20,
+    flexDirection: 'row',
   },
   checkboxContainer: {
     marginTop: 20,
     alignSelf: 'stretch',
+    
+    
   },
 });
