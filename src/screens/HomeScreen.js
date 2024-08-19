@@ -51,7 +51,7 @@ export default function HomeScreen({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity 
               
-              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              style={[styles.button, {backgroundColor:'#F9EBEA'}]} 
               onPress={() => navigation.navigate('LocationScreen')}
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Location Screen</Text>
@@ -72,10 +72,7 @@ export default function HomeScreen({ navigation }) {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center', 
-    backgroundColor:'rgb(40,40,40)',
-    borderWidth:1,
-    borderColor:'#FF8343',
-    borderStyle:'solid',
+    backgroundColor:'#ccc',
   },
   buttonContainer:{
     flexDirection: 'row',
@@ -99,13 +96,9 @@ export default function HomeScreen({ navigation }) {
   },
   header:{
     bottom:30, //header'ı yukarıya kaydırmak için
-    color:'#F2EFE5',
     fontSize:35,
     marginBottom:80,
-    borderWidth:2,
     borderColor:'#BBE9FF',
-    borderRadius:10,
     padding:10,
-    borderStyle:'dotted',
   }
   });
