@@ -1,88 +1,84 @@
-import { StyleSheet, Text, View,Button,Alert } from 'react-native'
-import React, { useState,useEffect  } from 'react';
-import LocationScreen from './LocationScreen';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native'
+import * as Location from 'expo-location';
+import { getDistance } from 'geolib';
 
-const LocationVerificationScreen = ({ route, navigation }) => {
-    const { cityName,onVerify  } = route.params;
-    const [location, setLocation] = useState(null);
-    const [city, setCity] = useState(null);
-    const [isLocationVerified, setIsLocationVerified] = useState(false);
-    
-  
-    const handleLocationUpdate = (location) => {
-      setLocation(location);
-    };
-  
-    const handleCityUpdate = (city) => {
-      setCity(city);
-      if (location && city) {
-        verifyLocation(location, city);
-      }
-    };
-  
-    const verifyLocation = (location, city) => {
-      if (city && city.toLowerCase() === cityName.toLowerCase()) {
-        setIsLocationVerified(true);
-        Alert.alert('Konum Doğrulandı', `Konumunuz ${city} ile eşleşiyor.`);
-        if (onVerify){
-          onVerify(true);  // Checkbox'ı işaretle
-        }
-        navigation.goBack();
+
+const cityCoordinatesData = {
+  Istanbul: { latitude: 41.0082, longitude: 28.9784 },
+  NewYork: { latitude: 40.7128, longitude: -74.0060 },
+  London: { latitude: 51.5074, longitude: -0.1278 },
+  Aydın: { latitude: 37.8218, longitude: 27.8378 },
+  // Diğer şehirler ve koordinatlar
+};
+
+
+const LocationVerificationScreen = ({route}) => {
+
+  const { cityName } = route.params;
+  const [userLocation, setUserLocation] = useState(null);
+  const [cityCoordinates, setCityCoordinates] = useState(null);
+
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
+  useEffect(() => {
+    if (cityName) {
+      const coordinates = cityCoordinatesData[cityName];
+      if (coordinates) {
+        setCityCoordinates(coordinates);
       } else {
-        setIsLocationVerified(false);
-        Alert.alert('Konum Doğrulanamadı', `Konumunuz ${city} ile eşleşmiyor.`);
-        if (onVerify) {
-          onVerify(false); // Checkbox'ı kaldır
-        }
+        alert('Şehir bulunamadı.');
       }
-      
-    };
+    }
+  }, [cityName]);
   
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Konum Doğrulama</Text>
-        <LocationScreen onLocationUpdate={handleLocationUpdate} onCityUpdate={handleCityUpdate} />
-        {location && <Text style={styles.locationText}>Mevcut Konum: {location.latitude}, {location.longitude}</Text>}
-        {city && <Text style={styles.cityText}>Bulunduğunuz şehir: {city}</Text>}
 
-        {isLocationVerified && (
-        <Button
-          title="Doğrulandı"
-          onPress={() => Alert.alert('Doğrulandı', 'Konumunuz başarıyla doğrulandı.')}
-          color="green"
-        />
-      )}
-        
-        <Button title="Geri Dön" onPress={() => navigation.goBack()} />
-      </View>
-    );
+  // Kullanıcı konumunu alma fonksiyonu
+  const getUserLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Konum izni verilmedi');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setUserLocation(location.coords);
   };
+
+  // Kullanıcı konumunu şehir koordinatları ile karşılaştırma fonksiyonu
+  const verifyLocation = () => {
+    if (!userLocation || !cityCoordinates) {
+      alert('Konum bilgileri eksik.');
+      console.log("Kullanıcı Konumu:", userLocation); // Debug için
+      console.log("Şehir Koordinatları:", cityCoordinates); // Debug için
+      return;
+    }
+
+  
+    const distance = getDistance(userLocation, cityCoordinates);
+    const isInCity = distance <= 10000; // 10 km içinde mi?
+
+    if (isInCity) {
+      alert('Kullanıcı seçilen şehirde.');
+    } else {
+      alert('Kullanıcı seçilen şehirde değil.');
+      console.log("Kullanıcı Konumu:", userLocation); // Debug için
+      console.log("Şehir Koordinatları:", cityCoordinates); // Debug için
+    }
+  };
+
+  return (
+    <View style={{ padding: 20 }}>
+      <Text>Şehir Adını Girin ve Konumu Doğrulayın:</Text>
+      <Button title={`Şehri Seç: ${cityName}`} onPress={() => verifyLocation()} />
+      <Button title="Doğrula" onPress={verifyLocation} />
+    </View>
+  );
+};
+
   
   export default LocationVerificationScreen;
   
-  const styles = StyleSheet.create({
-    container: {
-      
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    locationText: {
-      fontSize: 16,
-      marginTop: 20,
-    },
-    cityText: {
-      fontSize: 16,
-      marginTop: 10,
-    },
-    verificationText: {
-      fontSize: 18,
-      color: 'green',
-      marginTop: 20,
-    },
-  });
+  const styles = StyleSheet.create({});
