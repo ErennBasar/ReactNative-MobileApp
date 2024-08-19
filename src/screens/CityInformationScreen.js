@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { CheckBox } from 'react-native-elements';
 
-import LocationScreen from './LocationScreen';
 
 const CityInformationScreen = ({ route,navigation }) => {
   const { cityName } = route.params;
-  const [isLocationVerified, setIsLocationVerified] = useState(false);
-
-  const handleVerification = (verified) => {
-    setIsLocationVerified(verified);
-  };
+  
 
   return (
     <View style={styles.container}>
@@ -18,16 +12,9 @@ const CityInformationScreen = ({ route,navigation }) => {
       {cityName === 'Ankara' && <Text>Başkent olan Ankara, Türkiye'nin en büyük ikinci şehridir.</Text>}
       {cityName === 'Istanbul' && <Text>Istanbul, Türkiye'nin en kalabalık ve en turistik şehirlerinden biridir.</Text>}
 
-      <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', { cityName, onVerify: handleVerification })} />
+      <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', { cityName})} />
 
-      <LocationScreen />
-      <View style={styles.checkboxContainer}>
-        <CheckBox
-          checked={isLocationVerified}
-          disabled={true} // Checkbox'ı devre dışı bırak, kullanıcı tıklayamaz 
-        />
-         <Text>Konum Onaylandı</Text>
-      </View>
+      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', `${ cityName} yorumları`)} />
     </View>
   );
 };
@@ -50,7 +37,6 @@ const styles = StyleSheet.create({
   locationText: {
     fontSize: 16,
     marginTop: 20,
-    flexDirection: 'row',
   },
   checkboxContainer: {
     marginTop: 20,
