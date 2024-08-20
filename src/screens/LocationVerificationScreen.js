@@ -50,7 +50,7 @@ const LocationVerificationScreen = ({route}) => {
   // Kullanıcı konumunu şehir koordinatları ile karşılaştırma fonksiyonu
   const verifyLocation = () => {
     if (!userLocation || !cityCoordinates) {
-      alert('Konum bilgileri eksik.');
+      alert('Bekleniyor...');
       console.log("Kullanıcı Konumu:", userLocation); // Debug için
       console.log("Şehir Koordinatları:", cityCoordinates); // Debug için
       return;
