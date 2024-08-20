@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button,TouchableOpacity } from 'react-native';
 
 
 const CityInformationScreen = ({ route,navigation }) => {
@@ -10,7 +10,64 @@ const CityInformationScreen = ({ route,navigation }) => {
     <View style={styles.container}>
       <Text style={styles.cityText}>{cityName} hakkında bilgi:</Text>
       {cityName === 'Ankara' && <Text>Başkent olan Ankara, Türkiye'nin en büyük ikinci şehridir.</Text>}
-      {cityName === 'Istanbul' && <Text>Istanbul, Türkiye'nin en kalabalık ve en turistik şehirlerinden biridir.</Text>}
+      {cityName === 'Aydın'&& 
+        <View>
+          <Text>Aydın, Türkiye'nin Ege Bölgesi'nde yer alan bir şehirdir.</Text>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('PlaceDetailsScreen', { 
+                          placeName: 'Didim', 
+                          placeInfo: 'Didim, Aydın iline bağlı bir ilçedir.' 
+                          })}
+              >
+            <Text style={styles.buttonText}>Didim</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('PlaceDetailsScreen', { 
+                        placeName: 'Kuşadası',
+                        placeInfo: 'Kuşadası, Aydın iline bağlı bir ilçedir.'
+                        })}
+              >
+            <Text style={styles.buttonText}>Kuşadası</Text>
+      </TouchableOpacity>
+        </View> 
+          
+      } 
+      {cityName === 'Istanbul' && 
+       <View>
+          <Text>Istanbul, Türkiye'nin en kalabalık ve en turistik şehirlerinden biridir.</Text>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('PlaceDetailsScreen', { 
+                        placeName: 'Eminönü',
+                        placeInfo: 'Eminönü, İstanbul iline bağlı bir ilçedir.'
+                        })}
+              >
+            <Text style={styles.buttonText}>Eminönü</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('PlaceDetailsScreen', { 
+                        placeName: 'Beşiktaş',
+                        placeInfo: 'Beşiktaş, İstanbul iline bağlı bir ilçedir.'
+                        })}
+              >
+            <Text style={styles.buttonText}>Beşiktaş</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('PlaceDetailsScreen', { 
+                        placeName: 'Kadıköy',
+                        placeInfo: 'Kadıköy, İstanbul iline bağlı bir ilçedir.'
+                        })}
+              >
+            <Text style={styles.buttonText}>Kadıköy</Text>
+      </TouchableOpacity>
+
+       </View>
+      }
+        
 
       <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', { cityName})} />
 
@@ -24,9 +81,10 @@ export default CityInformationScreen;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#ccc',
+    flex: 1,
   },
   cityText: {
     fontSize: 20,
@@ -41,7 +99,17 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     marginTop: 20,
     alignSelf: 'stretch',
+  },
+  button: {
+    backgroundColor: '#FF8343',
+    marginVertical: 1,
+    borderWidth:2,
+    borderColor:'#FF8343',
+    marginVertical:2,
+    padding:4,
+    borderRadius:10,
+    justifyContent:'center',
     
-    
+    alignItems:'center',
   },
 });
