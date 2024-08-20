@@ -17,6 +17,7 @@ import CityInformation from '../my-app/components/CityInformation';
 import LocationVerificationScreen from './src/screens/LocationVerificationScreen';
 import CommentScreen from './src/screens/CommentScreen';
 import PlaceDetailsScreen from './src/screens/PlaceDetailsScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 
 
 
@@ -41,6 +42,8 @@ function App() {
         <Stack.Screen name="LocationVerificationScreen" component={LocationVerificationScreen} />
         <Stack.Screen name="CommentScreen" component={CommentScreen} />
         <Stack.Screen name="PlaceDetailsScreen" component={PlaceDetailsScreen} />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+
       </Stack.Navigator>
       
     </NavigationContainer>
