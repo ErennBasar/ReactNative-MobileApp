@@ -16,6 +16,7 @@ import CityInformationScreen from './src/screens/CityInformationScreen';
 import CityInformation from '../my-app/components/CityInformation';
 import LocationVerificationScreen from './src/screens/LocationVerificationScreen';
 import CommentScreen from './src/screens/CommentScreen';
+import PlaceDetailsScreen from './src/screens/PlaceDetailsScreen';
 
 
 
@@ -39,6 +40,7 @@ function App() {
         <Stack.Screen name="CityInformation" component={CityInformation} />
         <Stack.Screen name="LocationVerificationScreen" component={LocationVerificationScreen} />
         <Stack.Screen name="CommentScreen" component={CommentScreen} />
+        <Stack.Screen name="PlaceDetailsScreen" component={PlaceDetailsScreen} />
       </Stack.Navigator>
       
     </NavigationContainer>
