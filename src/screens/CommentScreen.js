@@ -70,19 +70,19 @@ const styles = StyleSheet.create({
     padding: 10,
     borderTopWidth: 1,
     borderColor: '#ccc',
-    marginVertical: 20,
-    backgroundColor: '#fff',
+    marginVertical: 4,
+    backgroundColor: '#ccc',
  },
  textContainer: {
     flexDirection: 'row',
     padding: 10,
     borderTopWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#FF8343',
 },
 input: {
   flex: 1,
   borderWidth: 1,
-  borderColor: '#ccc',
+  borderColor: '#FF8343',
   borderRadius: 5,
   paddingHorizontal: 10,
   marginRight: 10,
@@ -90,6 +90,6 @@ input: {
 commentContainer: {
   paddingVertical: 10,
   borderBottomWidth: 1,
-  borderBottomColor: '#EEA5A6', // Ayırt edici çizgi rengi
+  borderBottomColor: '#FF8343', // Ayırt edici çizgi rengi
 },
 })
