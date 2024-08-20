@@ -1,11 +1,33 @@
 import { StyleSheet, Text,View, TouchableOpacity ,Button} from 'react-native'
 import React from 'react'
+import { auth } from '../../firebase';
 
 export default function HomeScreen({ navigation }) {
+
+  const user = auth.currentUser;
+
+  // Kullanıcı bilgilerini al
+  const fullName = user?.displayName || ''; // Kullanıcının tam adı
+  const gender = user?.photoURL || ''; // Cinsiyet bilgisi
+
+  // Kullanıcı adı ve cinsiyet bilgilerine göre hoşgeldiniz mesajı oluştur
+  const welcomeMessage = () => {
+    if (fullName) {
+        const [firstName] = fullName.split(' '); // İlk isim
+        if (gender === 'Male') {
+            return `Hoşgeldiniz ${firstName} Bey!`;
+        } else if (gender === 'Female') {
+            return `Hoşgeldiniz ${firstName} Hanım!`;
+        }
+    }
+    return 'Hoşgeldiniz!';
+};
+
     return (
         
     <View style={styles.container}>
       <Text style={styles.header}>HomeScreen</Text>
+      <Text>{welcomeMessage()}</Text>
         <View style={styles.buttonContainer}>
               
           <TouchableOpacity 
