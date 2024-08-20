@@ -1,8 +1,7 @@
 import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React,{useState,useEffect } from 'react'
 import {auth} from '../../firebase';
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
-import { getRedirectResult } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 
@@ -11,26 +10,20 @@ const LoginScreen = ({navigation}) => {
     const [password,setPassword] = useState('');
     const [email,setEmail] = useState('');
 
-     const handleSignUp = () => {
-        
-         auth.createUserWithEmailAndPassword(email,password).then(userCredentials => {
-
-             const user = userCredentials.user;
-            //console.log(auth);
-             console.log('kullanıcı',user.email);
-         })
-         .catch((error) => alert(error.message));
-     }
-    const handleSignInWithGoogle = () => {
-        const provider = new GoogleAuthProvider();
-        // signInWithRedirect'i kullanarak Google ile oturum açma
-        signInWithRedirect(auth, provider).then(() => {
-            console.log('Oturum açıldı:', result.user);
-        })
-        .catch((error)=>{
-            console.error("Google ile oturum açarken bir hata oluştu:", error);
-        })
-    }
+    
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                console.log('Giriş başarılı:', user.email);
+                navigation.navigate('Home'); // Giriş başarılı olduğunda ana ekrana yönlendirme
+            })
+            .catch(error => {
+                // Giriş başarısız olursa hata mesajını göster
+                Alert.alert("Giriş Hatası", "E-posta veya şifre hatalı.");
+                console.error("Giriş sırasında bir hata oluştu:", error);
+            });
+    };
     
 
   return (
@@ -42,7 +35,7 @@ const LoginScreen = ({navigation}) => {
                     placeholder='Username or e-mail' 
                     style={styles.textInputStyle} 
                     value={email}
-                    onChangeText={(e)=>{setEmail(e)}}
+                    onChangeText={setEmail}
                     >
                 </TextInput>
                 <TextInput 
@@ -50,33 +43,27 @@ const LoginScreen = ({navigation}) => {
                     style={styles.textInputStyle} 
                     autoCapitalize='none'
                     value={password}
-                    onChangeText={(p)=>{setPassword(p)}}
+                    onChangeText={setPassword}
                     secureTextEntry
                     >
                  </TextInput>
-                <View>
-                    <Text style={styles.text} >
-                        {password.length >= 6 ? null : 
-                        <Text>Password must be longer than 6 characters</Text> }
-                    </Text>
-                </View>
-
+                 <TouchableOpacity
+                style={[styles.button, { backgroundColor: '#FF8400' }]}
+                onPress={handleLogin}
+               >
+                <Text>Login</Text>
+                </TouchableOpacity>
               <View style={styles.buttonContainer}>
                  <TouchableOpacity  
                         style={[styles.button,{backgroundColor:'#4158A6'}]}
-                        onPress={handleSignUp}
+                        onPress={()=>navigation.navigate('SignUpScreen')}
                         >
                     <Text>Sign Up</Text>   
               </TouchableOpacity> 
-                <TouchableOpacity   
-                        style={[styles.button, {backgroundColor:'#FF8400'}]}
-                        onPress={()=>navigation.navigate('Home')}
-                        >
-                    <Text>Login</Text>
-                </TouchableOpacity>
+                
                 <TouchableOpacity   
                         style={[styles.button, {backgroundColor:'#0F9D58'}]}
-                        onPress={handleSignInWithGoogle}
+                        
                 >
                     <Text>Sign in with Google</Text>
                 </TouchableOpacity>
