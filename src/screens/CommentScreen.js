@@ -3,7 +3,9 @@ import React,{useState,useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../firebase';
 
-const CommentScreen = () => {
+const CommentScreen = ({route}) => {
+
+const { cityName } = route.params || {};
 
 
 const user = auth.currentUser;
@@ -16,28 +18,34 @@ const [comment,setComment] = useState([])
 useEffect(() => {
   loadComments();
 }, []);
-const clearAllAsyncStorage = async () => {
+
+const clearCityComments = async () => {
   try {
-    await AsyncStorage.clear();
-    console.log('AsyncStorage tamamen temizlendi');
+    await AsyncStorage.removeItem(`${cityName}Comments`); // Sadece ilgili şehre ait yorumları temizler
+    setComment([]); // Ekrandaki yorumları da temizler
+    console.log(`${cityName} yorumları temizlendi`);
   } catch (error) {
-    console.error('AsyncStorage temizlenirken bir hata oluştu:', error);
+    console.error('Yorumlar temizlenirken bir hata oluştu:', error);
   }
 };
 
 const loadComments = async () => {
   try {
-      const storedComments = await AsyncStorage.getItem('comments');
+      const storedComments = await AsyncStorage.getItem(`${cityName}Comments`);
       if (storedComments !== null) {
           setComment(JSON.parse(storedComments));
-      }
+          console.log(`Yorumlar yüklendi:`, JSON.parse(storedComments));
+        } else {
+          console.log(`No comments found for ${cityName}`);
+        }
+      
   } catch (error) {
       console.error('Failed to load comments:', error);
   }
 };
 const saveComments = async (comments) => {
   try {
-      await AsyncStorage.setItem('comments', JSON.stringify(comments));
+      await AsyncStorage.setItem(`${cityName}Comments`, JSON.stringify(comments));
   } catch (error) {
       console.error('Failed to save comments:', error);
   }
@@ -45,7 +53,7 @@ const saveComments = async (comments) => {
 
 const addComment = () => {
   if (inputText.trim() !== ''){  
-    const newComment = { id: Date.now().toString(),name: fullName,username: username, text: inputText };
+    const newComment = { id: Date.now().toString(),name: fullName,username: username, text: inputText,date: new Date().toLocaleString()};
     const newComments = [...comment, newComment];
     setComment(newComments);
     saveComments(newComments);
@@ -57,15 +65,19 @@ const deleteComment = (id) => {
   setComment(filteredComments);
   saveComments(filteredComments);
 };
+
 const renderComment = ({ item }) => (
   <View style={styles.commentContainer}>
-    <Text style={styles.commentText}>{`${item.name} `}</Text>
-    <Text>{item.text}</Text>
+    <View style={styles.commentRow}>
+    <Text style={styles.commentText}>{`${item.name} - ${item.date} `}</Text>
+
     {item.username === username && ( // Yalnızca kullanıcı kendi yorumlarını silebilsin
     <TouchableOpacity onPress={() => deleteComment(item.id)} style={styles.deleteButton}>
         <Text style={styles.deleteButtonText}>Delete</Text>
       </TouchableOpacity>
     )}
+  </View>
+    <Text>{item.text}</Text>
   </View>
 );
 
@@ -83,7 +95,7 @@ const renderComment = ({ item }) => (
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.commentList}
             />
-          <Button title='Tüm Yorumları Sil' onPress={clearAllAsyncStorage}></Button> 
+          <Button title={`Tüm ${cityName} Yorumlarını Sil`} onPress={clearCityComments} /> 
           <View style={styles.inputContainer}>
              <TextInput
              style={styles.input}
@@ -146,5 +158,15 @@ deleteButton: {
 },
 deleteButtonText: {
   color: '#FFF',
+},
+commentDate: {
+  fontSize: 12,
+  color: '#555', // Tarih için farklı bir renk
+  marginTop: 4, // Üstten biraz boşluk
+},
+commentRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between', // Yorum ve buton arasında boşluk bırakır
+  alignItems: 'center',
 },
 })
