@@ -31,6 +31,7 @@ const CityInformationScreen = ({ route,navigation }) => {
               >
             <Text style={styles.buttonText}>Kuşadası</Text>
       </TouchableOpacity>
+      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', {cityName:'Aydın'} )} />
         </View> 
           
       } 
@@ -64,14 +65,14 @@ const CityInformationScreen = ({ route,navigation }) => {
               >
             <Text style={styles.buttonText}>Kadıköy</Text>
       </TouchableOpacity>
-
+      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', {cityName:'İstanbul'} )} />
        </View>
       }
         
 
-      <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', { cityName})} />
+      <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName})} />
 
-      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', `${ cityName} yorumları`)} />
+      
     </View>
   );
 };
