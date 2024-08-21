@@ -25,7 +25,7 @@ const SignUpScreen = ({ navigation }) => {
                 }).then(() => {
                     console.log('Kullanıcı kaydedildi:', user.displayName);
                     
-                    navigation.navigate('CommentScreen',{
+                    navigation.navigate('Home',{
                         firstName: firstName,
                         lastName: lastName,
                         username: username 
