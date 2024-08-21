@@ -11,6 +11,7 @@ const SignUpScreen = ({ navigation }) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [gender,setGender] = useState('');
+    const [username, setUsername] = useState('');
 
     const handleSignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -19,11 +20,16 @@ const SignUpScreen = ({ navigation }) => {
                 console.log('Kullanıcı:', user.email);
 
                 updateProfile(user, {
-                    displayName: `${firstName} ${lastName}`,
+                    displayName: `${firstName} ${lastName} ${username}`,
                     photoURL: gender
                 }).then(() => {
                     console.log('Kullanıcı kaydedildi:', user.displayName);
-                    navigation.navigate('Home'); // Kayıt başarılıysa ana ekrana yönlendirin
+                    
+                    navigation.navigate('CommentScreen',{
+                        firstName: firstName,
+                        lastName: lastName,
+                        username: username 
+                    }); // Kayıt başarılıysa ana ekrana yönlendirin
                 }).catch(error => {
                     console.error("Profil güncellenirken bir hata oluştu:", error);
                 });
@@ -45,6 +51,12 @@ const SignUpScreen = ({ navigation }) => {
                 style={styles.textInputStyle}
                 value={lastName}
                 onChangeText={setLastName}
+            />
+             <TextInput
+                placeholder="Username"
+                style={styles.textInputStyle}
+                value={username}
+                onChangeText={setUsername}
             />
            
             <TextInput
