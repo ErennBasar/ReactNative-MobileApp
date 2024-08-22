@@ -18,7 +18,7 @@ import LocationVerificationScreen from './src/screens/LocationVerificationScreen
 import CommentScreen from './src/screens/CommentScreen';
 import PlaceDetailsScreen from './src/screens/PlaceDetailsScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-
+import PlaceInfoScreen from './src/screens/PlaceInfoScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -43,6 +43,7 @@ function App() {
         <Stack.Screen name="CommentScreen" component={CommentScreen} />
         <Stack.Screen name="PlaceDetailsScreen" component={PlaceDetailsScreen} />
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <Stack.Screen name="PlaceInfoScreen" component={PlaceInfoScreen} />
 
       </Stack.Navigator>
       
