@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
     padding:4,
     borderRadius:10,
     justifyContent:'center',
-    
     alignItems:'center',
   },
 });
