@@ -34,6 +34,7 @@ const LoginScreen = ({navigation}) => {
                 <TextInput 
                     placeholder='Username or e-mail' 
                     style={styles.textInputStyle} 
+                    autoCapitalize='none'
                     value={email}
                     onChangeText={setEmail}
                     >
