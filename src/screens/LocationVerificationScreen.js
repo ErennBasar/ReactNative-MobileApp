@@ -6,9 +6,12 @@ import { getDistance } from 'geolib';
 
 const cityCoordinatesData = {
   Istanbul: { latitude: 41.0082, longitude: 28.9784 },
-  NewYork: { latitude: 40.7128, longitude: -74.0060 },
-  London: { latitude: 51.5074, longitude: -0.1278 },
   Aydın: { latitude: 37.8218, longitude: 27.8378 },
+  Didim: { latitude: 37.3875, longitude: 27.2577 },
+  Kuşadası: { latitude: 37.8579, longitude: 27.2614 },
+  Kadıköy: { latitude: 40.9916, longitude: 29.0277 },
+  Eminönü: { latitude: 41.0096, longitude: 28.9774 },
+  Beşiktaş: { latitude: 41.0422, longitude: 29.0071 },
   // Diğer şehirler ve koordinatlar
 };
 
@@ -72,7 +75,7 @@ const LocationVerificationScreen = ({route}) => {
   return (
     <View style={{ padding: 20 }}>
       <Text>Şehir Adını Girin ve Konumu Doğrulayın:</Text>
-      <Button title={`Şehri Seç: ${cityName}`} onPress={() => verifyLocation()} />
+      <Button title={`Konum Seç: ${cityName}`} onPress={() => verifyLocation()} />
       <Button title="Doğrula" onPress={verifyLocation} />
     </View>
   );
