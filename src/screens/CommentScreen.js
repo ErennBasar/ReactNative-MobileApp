@@ -4,55 +4,55 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../firebase';
 import CommentManager from '../../components/CommentManager';
 
-const CommentScreen = ({route}) => {
+      const CommentScreen = ({route}) => {
 
-const { cityName } = route.params || {};
+      const { cityName } = route.params || {};
 
 
-const user = auth.currentUser;
-const fullName = user?.displayName || '';
-const username = user?.displayName || '';
+      const user = auth.currentUser;
+      const fullName = user?.displayName || '';
+      const username = user?.displayName || '';
 
-const [inputText, setInputText] = useState('');
-const [comments, setComments] = useState([]);
+      const [inputText, setInputText] = useState('');
+      const [comments, setComments] = useState([]);
 
-const commentManager = CommentManager({ 
-  cityName, 
-  onCommentsChange: (updatedComments) => setComments(updatedComments) 
-});
-const addCommentHandler = () => {
-  if (inputText.trim() !== '') {
-    const newComment = {
-      id: Date.now().toString(),
-      name: fullName,
-      username: username,
-      text: inputText,
-      date: new Date().toLocaleString(),
-    };
-    commentManager.addComment(newComment);
-    setInputText('');
-  }
-};
-const deleteCommentHandler = (id) => {
-  commentManager.deleteComment(id);
-};
+      const commentManager = CommentManager({ 
+        cityName, 
+        onCommentsChange: (updatedComments) => setComments(updatedComments) 
+      });
+          const addCommentHandler = () => {
+          if (inputText.trim() !== '') {
+            const newComment = {
+              id: Date.now().toString(),
+              name: fullName,
+              username: username,
+              text: inputText,
+              date: new Date().toLocaleString(),
+            };
+            commentManager.addComment(newComment);
+            setInputText('');
+          }
+        };
+        const deleteCommentHandler = (id) => {
+          commentManager.deleteComment(id);
+        };
 
-const clearCommentsHandler = () => {
-  commentManager.clearComments();
-};
-const renderComment = ({ item }) => (
-  <View style={styles.commentContainer}>
-    <View style={styles.commentRow}>
-      <Text style={styles.commentText}>{`${item.name} - ${item.date}`}</Text>
-      {item.username === username && (
-        <TouchableOpacity onPress={() => deleteCommentHandler(item.id)} style={styles.deleteButton}>
-          <Text style={styles.deleteButtonText}>Sil</Text>
-        </TouchableOpacity>
-      )}
-    </View>
-    <Text>{item.text}</Text>
-  </View>
-);
+        const clearCommentsHandler = () => {
+          commentManager.clearComments();
+        };
+        const renderComment = ({ item }) => (
+          <View style={styles.commentContainer}>
+            <View style={styles.commentRow}>
+              <Text style={styles.commentText}>{`${item.name} - ${item.date}`}</Text>
+              {item.username === username && (
+                <TouchableOpacity onPress={() => deleteCommentHandler(item.id)} style={styles.deleteButton}>
+                  <Text style={styles.deleteButtonText}>Sil</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <Text>{item.text}</Text>
+          </View>
+        );
 
   return (
     <KeyboardAvoidingView 
