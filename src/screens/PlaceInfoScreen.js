@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View,TextInput ,Image} from 'react-native'
+import { StyleSheet, Text, View,TextInput ,Image } from 'react-native'
 import React,{useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import ImageViewer from '../../components/ImageViewer'; 
 import Button from '../../components/Button';
 
+
+
 const PlaceholderImage = require('../../assets/PlacesImages/background-image.png');
 
 const PlaceInfoScreen = ({route}) => {
 
-    const { place } = route.params || {};
+    const { place  } = route.params || {};
   
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -35,8 +37,7 @@ const PlaceInfoScreen = ({route}) => {
           <View style={styles.footerContainer}>
               <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
               
-          </View>
-          
+          </View>  
         </View>
       
     
