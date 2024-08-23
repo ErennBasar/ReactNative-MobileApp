@@ -24,6 +24,21 @@ const PlaceDetailsScreen = ({route,navigation}) => {
           <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
       </ScrollView>
       }
+      { placeName === 'Kuşadası' && 
+      <ScrollView>
+
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Dilek Yarımadası'})}>
+          <PlaceDetails 
+          title='Dilek Yarımadası'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Kuşadası ilçesine bağlı bir milli parktır.' 
+          
+          />
+        </TouchableOpacity>
+
+          <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
+      </ScrollView>
+      }
        
     </ScrollView>
   )
