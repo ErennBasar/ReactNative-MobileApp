@@ -20,6 +20,14 @@ const PlaceDetailsScreen = ({route,navigation}) => {
           
           />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Akbük'})}>
+          <PlaceDetails 
+          title='Akbük'
+          imageSource={require('../../assets/PlacesImages/didim-altınkum.jpeg')} 
+          desc='Akbük Didim ilçesine bağlı bir mahalledir.' 
+          
+          />
+        </TouchableOpacity>
 
           <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
       </ScrollView>
