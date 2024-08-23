@@ -2,6 +2,7 @@ import { StyleSheet, Text, View ,TextInput,Button,ScrollView,TouchableOpacity,Fl
 import React,{useState,useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../firebase';
+import CommentManager from '../../components/CommentManager';
 
 const CommentScreen = ({route}) => {
 
@@ -13,70 +14,42 @@ const fullName = user?.displayName || '';
 const username = user?.displayName || '';
 
 const [inputText, setInputText] = useState('');
-const [comment,setComment] = useState([])
+const [comments, setComments] = useState([]);
 
-useEffect(() => {
-  loadComments();
-}, []);
-
-const clearCityComments = async () => {
-  try {
-    await AsyncStorage.removeItem(`${cityName}Comments`); // Sadece ilgili şehre ait yorumları temizler
-    setComment([]); // Ekrandaki yorumları da temizler
-    console.log(`${cityName} yorumları temizlendi`);
-  } catch (error) {
-    console.error('Yorumlar temizlenirken bir hata oluştu:', error);
-  }
-};
-
-const loadComments = async () => {
-  try {
-      const storedComments = await AsyncStorage.getItem(`${cityName}Comments`);
-      if (storedComments !== null) {
-          setComment(JSON.parse(storedComments));
-          console.log(`Yorumlar yüklendi:`, JSON.parse(storedComments));
-        } else {
-          console.log(`No comments found for ${cityName}`);
-        }
-      
-  } catch (error) {
-      console.error('Failed to load comments:', error);
-  }
-};
-const saveComments = async (comments) => {
-  try {
-      await AsyncStorage.setItem(`${cityName}Comments`, JSON.stringify(comments));
-  } catch (error) {
-      console.error('Failed to save comments:', error);
-  }
-};
-
-const addComment = () => {
-  if (inputText.trim() !== ''){  
-    const newComment = { id: Date.now().toString(),name: fullName,username: username, text: inputText,date: new Date().toLocaleString()};
-    const newComments = [...comment, newComment];
-    setComment(newComments);
-    saveComments(newComments);
+const commentManager = CommentManager({ 
+  cityName, 
+  onCommentsChange: (updatedComments) => setComments(updatedComments) 
+});
+const addCommentHandler = () => {
+  if (inputText.trim() !== '') {
+    const newComment = {
+      id: Date.now().toString(),
+      name: fullName,
+      username: username,
+      text: inputText,
+      date: new Date().toLocaleString(),
+    };
+    commentManager.addComment(newComment);
     setInputText('');
   }
-}
-const deleteComment = (id) => {
-  const filteredComments = comment.filter(c => c.id !== id);
-  setComment(filteredComments);
-  saveComments(filteredComments);
+};
+const deleteCommentHandler = (id) => {
+  commentManager.deleteComment(id);
 };
 
+const clearCommentsHandler = () => {
+  commentManager.clearComments();
+};
 const renderComment = ({ item }) => (
   <View style={styles.commentContainer}>
     <View style={styles.commentRow}>
-    <Text style={styles.commentText}>{`${item.name} - ${item.date} `}</Text>
-
-    {item.username === username && ( // Yalnızca kullanıcı kendi yorumlarını silebilsin
-    <TouchableOpacity onPress={() => deleteComment(item.id)} style={styles.deleteButton}>
-        <Text style={styles.deleteButtonText}>Delete</Text>
-      </TouchableOpacity>
-    )}
-  </View>
+      <Text style={styles.commentText}>{`${item.name} - ${item.date}`}</Text>
+      {item.username === username && (
+        <TouchableOpacity onPress={() => deleteCommentHandler(item.id)} style={styles.deleteButton}>
+          <Text style={styles.deleteButtonText}>Sil</Text>
+        </TouchableOpacity>
+      )}
+    </View>
     <Text>{item.text}</Text>
   </View>
 );
@@ -90,12 +63,12 @@ const renderComment = ({ item }) => (
        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
          <View style={styles.inner}>
             <FlatList
-            data={comment}
+            data={comments}
             renderItem={renderComment}   
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.commentList}
             />
-          <Button title={`Tüm ${cityName} Yorumlarını Sil`} onPress={clearCityComments} /> 
+          <Button title={`Tüm ${cityName} Yorumlarını Sil`} onPress={clearCommentsHandler} /> 
           <View style={styles.inputContainer}>
              <TextInput
              style={styles.input}
@@ -104,7 +77,7 @@ const renderComment = ({ item }) => (
              onChangeText={(text) => setInputText(text)}
              >
              </TextInput>
-             <Button title='Yorum Ekle' onPress={addComment}></Button>
+             <Button title='Yorum Ekle' onPress={addCommentHandler}></Button>
           </View>
          </View>
        </TouchableWithoutFeedback>
