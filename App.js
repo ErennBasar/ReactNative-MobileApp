@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 
 import HomeScreen from './src/screens/HomeScreen';
 import CoursesScreen from './src/screens/CoursesScreen';
@@ -22,23 +23,42 @@ import PlaceDetailsScreen from './src/screens/PlaceDetailsScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import PlaceInfoScreen from './src/screens/PlaceInfoScreen';
 import ImageScreen from './src/screens/ImageScreen';
+import FavoritesScreen from './src/screens/FavoritesScreen';
+
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-
+function DrawerNavigator() {
+  
+  const navigation = useNavigation();
+  
+  return (
+  <Drawer.Navigator >
+      <Drawer.Screen name="Home" component={HomeScreen}/>
+      <Drawer.Screen name="Boxes" component={BoxScreen}/>
+      <Drawer.Screen name="ColorChangeScreen" component={ColorChangeScreen}/>
+      <Drawer.Screen name="Counter" component={CounterScreen} />
+      <Drawer.Screen name="Courses" component={CoursesScreen} />
+      <Drawer.Screen name="Course Informations" component={CoursesInformationScreen} />
+      <Drawer.Screen name="PasswordScreen" component={PasswordScreen} />
+      <Drawer.Screen name="Favorites" component={FavoritesScreen}/>
+      <Drawer.Screen name="LogOut">
+          {() => {
+            
+            navigation.navigate('Login');
+            return null; // Hiçbir şey render etmez çünkü logout sadece yönlendirme yapar.
+          }}
+      </Drawer.Screen>
+  </Drawer.Navigator>
+ )
+}
 
 function App() {
   return ( 
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen options={{headerShown:false}} name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Courses" component={CoursesScreen} />
-        <Stack.Screen name="Course Informations" component={CoursesInformationScreen} />
-        <Stack.Screen name="Counter" component={CounterScreen} />
-        <Stack.Screen name="Boxes" component={BoxScreen} />
-        <Stack.Screen name="ColorChangeScreen" component={ColorChangeScreen} />
-        <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
+      <Stack.Navigator >
+        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}  />
         <Stack.Screen name="LocationScreen" component={LocationScreen} />
         <Stack.Screen name="CityScreen" component={CityScreen} />
         <Stack.Screen name="CityInformationScreen" component={CityInformationScreen} />
@@ -49,6 +69,14 @@ function App() {
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="PlaceInfoScreen" component={PlaceInfoScreen} />
         <Stack.Screen name="ImageScreen" component={ImageScreen} />
+        <Stack.Screen 
+          name="Drawer" 
+          component={DrawerNavigator} 
+          options={{
+            title: 'Drawer Navigator',
+            headerShown: false,
+          }}
+          />
         
       </Stack.Navigator>
     
