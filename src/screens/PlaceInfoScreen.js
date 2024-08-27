@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 
 const PlaceInfoScreen = ({route,navigation}) => {
 
-  const {place} = route.params
+  const {place} = route.params || {}
 ;  return (
     <View>
       <Text style={styles.title}>{place} Info Screen</Text>
