@@ -31,47 +31,6 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.buttonContainer}>
               
           <TouchableOpacity 
-                style={[styles.button, {backgroundColor:'#FEAE6F'}]} 
-                onPress={() => navigation.navigate('Courses')}
-                >
-              <Text style={[styles.buttonText,{color:'black'}]}>My Courses</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-              
-                style={[styles.button, {backgroundColor:'#8E7AB5'}]} 
-                onPress={() => navigation.navigate('Course Informations')}
-                >
-              <Text style={[styles.buttonText,{color:'black'}]}>Course Informations</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-              
-                style={[styles.button, {backgroundColor:'#F6DCAC'}]} 
-                onPress={() => navigation.navigate('Counter')}
-                >
-              <Text style={[styles.buttonText,{color:'black'}]}>Counter App</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-              
-                style={[styles.button, {backgroundColor:'#E493B3'}]} 
-                onPress={() => navigation.navigate('Boxes')}
-                >
-              <Text style={[styles.buttonText,{color:'black'}]}>Box App</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-              
-                style={[styles.button, {backgroundColor:'#9AC8CD'}]} 
-                onPress={() => navigation.navigate('ColorChangeScreen')}
-                >
-              <Text style={[styles.buttonText,{color:'black'}]}>Change Color</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-              
-              style={[styles.button, {backgroundColor:'#EEA5A6'}]} 
-              onPress={() => navigation.navigate('PasswordScreen')}
-              >
-            <Text style={[styles.buttonText,{color:'black'}]}>Password Screen</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
               
               style={[styles.button, {backgroundColor:'#F9EBEA'}]} 
               onPress={() => navigation.navigate('LocationScreen')}
