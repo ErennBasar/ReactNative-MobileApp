@@ -16,7 +16,7 @@ const LoginScreen = ({navigation}) => {
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log('Giriş başarılı:', user.email);
-                navigation.navigate('Home'); // Giriş başarılı olduğunda ana ekrana yönlendirme
+                navigation.navigate('Drawer'); // Giriş başarılı olduğunda ana ekrana yönlendirme
             })
             .catch(error => {
                 // Giriş başarısız olursa hata mesajını göster
