@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
 import HomeScreen from './src/screens/HomeScreen';
 import CoursesScreen from './src/screens/CoursesScreen';
 import CoursesInformationScreen from './src/screens/CoursesInformationScreen';
 import CounterScreen from './src/screens/CounterScreen';
-import BoxScreen from './src/screens/BoxScreen';
+import BoxScreen from './src/screens/BoxScreen';  
 import ColorChangeScreen from './src/screens/ColorChangeScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -21,8 +23,9 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import PlaceInfoScreen from './src/screens/PlaceInfoScreen';
 import ImageScreen from './src/screens/ImageScreen';
 
-
 const Stack = createNativeStackNavigator();
+
+
 
 function App() {
   return ( 
@@ -46,11 +49,10 @@ function App() {
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="PlaceInfoScreen" component={PlaceInfoScreen} />
         <Stack.Screen name="ImageScreen" component={ImageScreen} />
-
+        
       </Stack.Navigator>
-      
-    </NavigationContainer>
     
+    </NavigationContainer>
   );
 }
 
