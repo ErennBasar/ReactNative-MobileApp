@@ -69,6 +69,7 @@ const LoginScreen = ({navigation}) => {
                     <Text>Sign in with Google</Text>
                 </TouchableOpacity>
             </View> 
+           
         </KeyboardAvoidingView>
     
   );
