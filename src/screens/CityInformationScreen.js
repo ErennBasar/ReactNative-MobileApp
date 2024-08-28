@@ -41,29 +41,29 @@ const CityInformationScreen = ({ route,navigation }) => {
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('PlaceDetailsScreen', { 
-                        placeName: 'Eminönü',
-                        placeInfo: 'Eminönü, İstanbul iline bağlı bir ilçedir.'
+                        placeName: 'Taksim',
+                        placeInfo: 'Taksim, İstanbul iline bağlı bir ilçedir.'
                         })}
               >
-            <Text style={styles.buttonText}>Eminönü</Text>
+            <Text style={styles.buttonText}>Taksim</Text>
       </TouchableOpacity>
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('PlaceDetailsScreen', { 
-                        placeName: 'Beşiktaş',
-                        placeInfo: 'Beşiktaş, İstanbul iline bağlı bir ilçedir.'
+                        placeName: 'Üsküdar',
+                        placeInfo: 'Üsküdar, İstanbul iline bağlı bir ilçedir.'
                         })}
               >
-            <Text style={styles.buttonText}>Beşiktaş</Text>
+            <Text style={styles.buttonText}>Üsküdar</Text>
       </TouchableOpacity>
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('PlaceDetailsScreen', { 
-                        placeName: 'Kadıköy',
-                        placeInfo: 'Kadıköy, İstanbul iline bağlı bir ilçedir.'
+                        placeName: 'Fatih',
+                        placeInfo: 'Fatih, İstanbul iline bağlı bir ilçedir.'
                         })}
               >
-            <Text style={styles.buttonText}>Kadıköy</Text>
+            <Text style={styles.buttonText}>Fatih</Text>
       </TouchableOpacity>
       <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', {cityName:'İstanbul'} )} />
        </View>
