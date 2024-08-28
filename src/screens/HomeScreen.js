@@ -56,20 +56,24 @@ export default function HomeScreen({ navigation }) {
     backgroundColor:'#ccc',
   },
   buttonContainer:{
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    
+    
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
+    width: '%100',
+    
     paddingHorizontal: 10,
   },
   button:{
-    flexBasis: '47%',
+    
     padding: 15,
     marginVertical: 3,
-    borderRadius: 5,
+    borderRadius: 15,
     alignItems: 'center',
     marginHorizontal: 5,
+    borderWidth: 1,
+    borderColor: 'orange',
+  
   },
   buttonText:{
     color: 'white',
