@@ -4,6 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from './src/screens/HomeScreen';
 import CoursesScreen from './src/screens/CoursesScreen';
@@ -34,16 +39,96 @@ function DrawerNavigator() {
   const navigation = useNavigation();
   
   return (
-  <Drawer.Navigator >
-      <Drawer.Screen name="Home" component={HomeScreen}/>
-      <Drawer.Screen name="Boxes" component={BoxScreen}/>
-      <Drawer.Screen name="ColorChangeScreen" component={ColorChangeScreen}/>
-      <Drawer.Screen name="Counter" component={CounterScreen} />
-      <Drawer.Screen name="Courses" component={CoursesScreen} />
-      <Drawer.Screen name="Course Informations" component={CoursesInformationScreen} />
-      <Drawer.Screen name="PasswordScreen" component={PasswordScreen} />
-      <Drawer.Screen name="Favorites" component={FavoritesScreen}/>
-      <Drawer.Screen name="LogOut">
+  <Drawer.Navigator 
+      screenOptions={{
+        headerStyle:{backgroundColor:'#f4511e'},
+        headerTintColor: 'white',
+        sceneContainerStyle: {backgroundColor:'#ccc'},
+        drawerContentStyle: {backgroundColor:'#ccc'},
+        drawerInactiveTintColor: 'hsl(211, 49%, 51%)',
+        drawerActiveTintColor: '#f4511e',
+      }}
+  >
+      <Drawer.Screen 
+        name="Home" 
+        component={HomeScreen}
+        options={{
+          drawerIcon:()=>(
+            <AntDesign name="home" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Favorites" 
+        component={FavoritesScreen}
+        options={{
+          drawerIcon:()=>(
+            <FontAwesome6 name="star-and-crescent" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Boxes" 
+        component={BoxScreen}
+        options={{
+          drawerIcon:()=>(
+            <FontAwesome6 name="boxes-stacked" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="ColorChangeScreen" 
+        component={ColorChangeScreen}
+        options={{
+          drawerIcon:()=>(
+            <Ionicons name="color-palette-outline" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Counter" 
+        component={CounterScreen} 
+        options={{
+          drawerIcon:()=>(
+            <MaterialCommunityIcons name="counter" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Courses" 
+        component={CoursesScreen} 
+        options={{
+          drawerIcon:()=>(
+            <MaterialIcons name="golf-course" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Course Informations" 
+        component={CoursesInformationScreen} 
+        options={{
+          drawerIcon:()=>(
+            <AntDesign name="infocirlceo" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="PasswordScreen" 
+        component={PasswordScreen} 
+        options={{
+          drawerIcon:()=>(
+            <MaterialIcons name="password" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="LogOut"
+        options={{
+          drawerIcon:()=>(
+            <AntDesign name="logout" size={24} color="black" />
+          ),
+        }}
+        >
           {() => {
             
             navigation.navigate('Login');
@@ -86,6 +171,4 @@ function App() {
 
 export default App;
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});
