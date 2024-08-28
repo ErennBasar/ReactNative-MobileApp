@@ -35,7 +35,7 @@ const PlaceDetailsScreen = ({route,navigation}) => {
       { placeName === 'Kuşadası' && 
       <ScrollView>
 
-        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Dilek Yarımadası'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'DilekYarımadası'})}>
           <PlaceDetails 
           title='Dilek Yarımadası'
           imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
@@ -47,6 +47,68 @@ const PlaceDetailsScreen = ({route,navigation}) => {
           <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
       </ScrollView>
       }
+      { placeName === 'Taksim' && 
+      <ScrollView>
+
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Taksim'})}>
+          <PlaceDetails 
+          title='Taksim Meydanı'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Taksim Meydanı, İstanbul iline bağlı bir meydandır.' 
+          
+          />
+        </TouchableOpacity>
+
+          <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
+      </ScrollView>
+      }
+      { placeName === 'Üsküdar' && 
+      <ScrollView>
+
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'kızkulesi'})}>
+          <PlaceDetails 
+          title='Kız Kulesi'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Kız Kulesi, Üsküdar ilçesine bağlı bir kuledir.' 
+          
+          />
+        </TouchableOpacity>
+
+          <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
+      </ScrollView>
+      }
+      { placeName === 'Fatih' && 
+      <ScrollView>
+
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Ayasofya'})}>
+          <PlaceDetails 
+          title='Ayasofya'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Ayasofya Müzesi, Fatih ilçesine bağlı bir müzedir.' 
+          
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Topkapı'})}>
+          <PlaceDetails 
+          title='Topkapı Sarayı'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Topkapı Sarayı, Fatih ilçesine bağlı bir saraydır.' 
+          
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('PlaceInfoScreen', {place:'Sultanahmet'})}>
+          <PlaceDetails 
+          title='Sultanahmet Cami'
+          imageSource={require('../../assets/PlacesImages/dilek_yarımadası.jpg')} 
+          desc='Sultanahmet Camii, Fatih ilçesine bağlı bir camidir.' 
+          
+          />
+        </TouchableOpacity>
+
+          <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName: placeName})} />
+      </ScrollView>
+      }
+      
        
     </ScrollView>
   )
