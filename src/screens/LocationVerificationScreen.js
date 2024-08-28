@@ -12,6 +12,7 @@ const cityCoordinatesData = {
   Kadıköy: { latitude: 40.9916, longitude: 29.0277 },
   Eminönü: { latitude: 41.0096, longitude: 28.9774 },
   Beşiktaş: { latitude: 41.0422, longitude: 29.0071 },
+  Taksim: { latitude: 41.0390, longitude: 28.9862 },
   // Diğer şehirler ve koordinatlar
 };
 
