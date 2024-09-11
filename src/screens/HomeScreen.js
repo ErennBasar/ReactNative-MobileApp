@@ -32,7 +32,7 @@ export default function HomeScreen({ navigation }) {
               
           <TouchableOpacity 
               
-              style={[styles.button, {backgroundColor:'#F9EBEA'}]} 
+              style={[styles.button, {backgroundColor:'#fff'}]} 
               onPress={() => navigation.navigate('LocationScreen')}
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Location Screen</Text>
@@ -72,7 +72,7 @@ export default function HomeScreen({ navigation }) {
     alignItems: 'center',
     marginHorizontal: 5,
     borderWidth: 1,
-    borderColor: 'orange',
+    borderColor: 'purple',
   
   },
   buttonText:{
