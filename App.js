@@ -29,6 +29,7 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import PlaceInfoScreen from './src/screens/PlaceInfoScreen';
 import ImageScreen from './src/screens/ImageScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
+import GradientHeader from './components/GradientHeader';
 
 
 const Stack = createNativeStackNavigator();
@@ -41,12 +42,13 @@ function DrawerNavigator() {
   return (
   <Drawer.Navigator 
       screenOptions={{
-        headerStyle:{backgroundColor:'#f4511e'},
+        header: ({route}) => <GradientHeader title={route.name}/>,
+        //headerStyle:{backgroundColor:'blue'},
         headerTintColor: 'white',
         sceneContainerStyle: {backgroundColor:'#ccc'},
         drawerContentStyle: {backgroundColor:'#ccc'},
         drawerInactiveTintColor: 'hsl(211, 49%, 51%)',
-        drawerActiveTintColor: '#f4511e',
+        drawerActiveTintColor: '#250092',
       }}
   >
       <Drawer.Screen 
