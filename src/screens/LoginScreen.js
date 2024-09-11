@@ -2,6 +2,11 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import React,{useState } from 'react'
 import {auth} from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
+
+
+
 
 
 
@@ -29,8 +34,14 @@ const LoginScreen = ({navigation}) => {
   return (
     
 
-        <KeyboardAvoidingView style={styles.container}>
-            <Text>Welcome !</Text>
+    <KeyboardAvoidingView style={styles.container}>
+        <Text>Welcome !</Text>
+            <LinearGradient
+                colors={['blue', 'purple']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.gradientBorder}
+                >
                 <TextInput 
                     placeholder='Username or e-mail' 
                     style={styles.textInputStyle} 
@@ -39,42 +50,69 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={setEmail}
                     >
                 </TextInput>
-                <TextInput 
-                    placeholder='Password' 
-                    style={styles.textInputStyle} 
-                    autoCapitalize='none'
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                    >
-                 </TextInput>
-                 <TouchableOpacity
-                style={[styles.button, { backgroundColor: '#FF8400' }]}
-                onPress={handleLogin}
-               >
-                <Text>Login</Text>
-                </TouchableOpacity>
-              <View style={styles.buttonContainer}>
-                 <TouchableOpacity  
-                        style={[styles.button,{backgroundColor:'#4158A6'}]}
-                        onPress={()=>navigation.navigate('SignUpScreen')}
-                        >
-                    <Text>Sign Up</Text>   
-              </TouchableOpacity> 
+            </LinearGradient>
                 
-                <TouchableOpacity   
-                        style={[styles.button, {backgroundColor:'#0F9D58'}]}
-                        
-                >
-                    <Text>Sign in with Google</Text>
+                <LinearGradient
+                    colors={['blue', 'purple']}
+                    start={{ x: 1, y: 0 }}
+                    end={{ x: 0, y: 0 }}
+                    style={styles.gradientBorder}
+                    >
+                    <TextInput 
+                        placeholder='Password' 
+                        style={styles.textInputStyle} 
+                        autoCapitalize='none'
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                        >
+                    </TextInput>
+                </LinearGradient>
+
+
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    style={styles.buttonStyle}
+                    onPress={handleLogin}
+                    >
+                   <MaskedView
+                        maskElement={
+                            <View style={styles.maskedView}>
+                                <Text style={styles.buttonText}>Login</Text> 
+                            </View>
+                        }
+                    >
+                        <LinearGradient
+                            colors={['blue', 'purple']} // Geçişli renkler
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            style={styles.buttonGradient}
+                        />
+                    </MaskedView>
                 </TouchableOpacity>
-            </View> 
-           
-        </KeyboardAvoidingView>
-    
+                    
+                        
+                <TouchableOpacity  
+                    style={styles.buttonStyle}
+                    onPress={()=>navigation.navigate('SignUpScreen')}
+                    >
+                   <MaskedView
+                        maskElement={
+                            <Text style={styles.buttonText}>Sign Up</Text>
+                        }
+                    >
+                        <LinearGradient
+                            colors={['blue', 'purple']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            style={styles.buttonGradient}
+                        />
+                    </MaskedView>
+                </TouchableOpacity> 
+        </View> 
+    </KeyboardAvoidingView>
   );
 }
-
 export default LoginScreen
 
 const styles = StyleSheet.create({
@@ -82,31 +120,50 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#ccc'
+        backgroundColor:'#ccc',
     },
+    gradientBorder: {
+        padding: 1,
+        margin: 5,
+        borderRadius: 15,
+        flexDirection: 'column',
+      },
     textInputStyle:{
-        borderWidth:1,
-        borderColor:'#FF8343',
+        margin:3,
         padding:10,
-        margin:10,
+        backgroundColor:'#ccc',
         width:200,
         borderRadius:15,
-    },
-    button:{
-        justifyContent:'center',
-        width:80,
-        height:35,
-        borderRadius:10,
-        alignItems:'center',
-        marginHorizontal:15,
+       
     },
     buttonContainer:{
         flexDirection:'row',
-    },  
-   
-    text:{
-        marginBottom:25,
-    }
-})
+        marginTop: 20,
+        justifyContent: 'space-between',
+        width: '70%',
        
-    
+    },  
+    buttonStyle: {
+        flex: 1,
+        marginHorizontal: 10,
+        borderRadius: 15,
+    },
+    buttonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        paddingVertical: 10, // Butonun yüksekliği ayarlandı
+    },
+    buttonGradient: {
+        
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50, // Butonun yüksekliği ayar
+        
+    },
+    maskedView: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+})
