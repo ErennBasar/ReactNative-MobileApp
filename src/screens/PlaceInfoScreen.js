@@ -52,7 +52,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -68,7 +68,13 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          style={styles.button}
+          onPress={() =>navigation.navigate('DenemeScreen',{placeName:place} )}
+          >
+            <Text>Deneme</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -84,7 +90,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -100,7 +106,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -116,7 +122,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -132,7 +138,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -148,7 +154,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
@@ -164,7 +170,7 @@ const PlaceInfoScreen = ({route,navigation}) => {
           style={styles.button}
           onPress={() =>navigation.navigate('ImageScreen',{placeName:place} )}
           >
-            <Text>Upload Foto</Text>
+            <Text>Images</Text>
           </TouchableOpacity>
           <TouchableOpacity 
           style={styles.button}
