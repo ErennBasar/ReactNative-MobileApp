@@ -145,7 +145,13 @@ function DrawerNavigator() {
 function App() {
   return ( 
     <NavigationContainer >
-      <Stack.Navigator >
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+              backgroundColor: '#491eae', // Header arka plan rengi
+            },
+            headerTintColor: '#fff', // Başlık metni ve geri düğmesi rengi
+          }}
+        >
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}  />
         <Stack.Screen name="LocationScreen" component={LocationScreen} />
         <Stack.Screen name="CityScreen" component={CityScreen} />
