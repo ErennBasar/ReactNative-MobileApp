@@ -13,6 +13,7 @@ const CityInformationScreen = ({ route,navigation }) => {
       {cityName === 'Aydın'&& 
         <View>
           <Text>Aydın, Türkiye'nin Ege Bölgesi'nde yer alan bir şehirdir.</Text>
+          <View style={styles.buttonRow}>
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('PlaceDetailsScreen', { 
@@ -31,13 +32,21 @@ const CityInformationScreen = ({ route,navigation }) => {
               >
             <Text style={styles.buttonText}>Kuşadası</Text>
       </TouchableOpacity>
-      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', {cityName:'Aydın'} )} />
+      
+      </View>
+      <TouchableOpacity
+            style={styles.commentButton}
+            onPress={() => navigation.navigate('CommentScreen', {cityName:'Aydın'} )}
+        >
+          <Text>Yorumlar</Text>
+        </TouchableOpacity>
         </View> 
           
       } 
       {cityName === 'Istanbul' && 
-       <View>
+        <View>
           <Text>Istanbul, Türkiye'nin en kalabalık ve en turistik şehirlerinden biridir.</Text>
+        <View style={styles.buttonRow}>
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('PlaceDetailsScreen', { 
@@ -65,13 +74,22 @@ const CityInformationScreen = ({ route,navigation }) => {
               >
             <Text style={styles.buttonText}>Fatih</Text>
       </TouchableOpacity>
-      <Button title="Yorumlar" onPress={() => navigation.navigate('CommentScreen', {cityName:'İstanbul'} )} />
+      
+        </View>
+        <TouchableOpacity
+            style={styles.commentButton}
+            onPress={() => navigation.navigate('CommentScreen', {cityName:'İstanbul'} )}
+        >
+          <Text>Yorumlar</Text>
+        </TouchableOpacity>
        </View>
       }
-        
-
-      <Button title="Konum Onayla" onPress={() => navigation.navigate('LocationVerificationScreen', {cityName})} />
-
+      <TouchableOpacity
+            style={styles.locationButton}
+            onPress={() => navigation.navigate('LocationVerificationScreen', {cityName})}
+        >
+          <Text>Konum</Text>
+        </TouchableOpacity>
       
     </View>
   );
@@ -103,13 +121,41 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#FF8343',
-    marginVertical: 1,
+    marginVertical: 5,
     borderWidth:2,
-    borderColor:'#FF8343',
-    marginVertical:2,
-    padding:4,
+    borderColor:'#624E88',
+    padding: 10,
     borderRadius:10,
     justifyContent:'center',
     alignItems:'center',
+    height:80,
+    width:100,
+  },
+  commentButton: {
+    backgroundColor: '#536493',
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 10,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderWidth:2,
+    borderColor:'#4F1787',
+  },
+  locationButton: {
+    backgroundColor: '#536493',
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 370,
+    borderWidth:2,
+    borderColor:'#4F1787',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginVertical: 10,
   },
 });
