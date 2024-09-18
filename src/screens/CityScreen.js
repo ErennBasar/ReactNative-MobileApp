@@ -30,23 +30,24 @@ export default CityScreen
 
 const styles = StyleSheet.create({
   container:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    backgroundColor: '#ccc',
+    padding: 20,
     flex: 1,
-    backgroundColor:'#ccc', 
-    
-  },
-  buttonText:{
-    borderWidth:2,
-    borderColor:'#FF8343',
-    marginVertical:10,
-    padding:10,
-    borderRadius:15,
-    marginHorizontal:10,
-    justifyContent:'center',
-    alignItems:'center',
-    textAlign: 'center'
+    alignItems: 'center',
   },
   button:{
     backgroundColor: '#FF8343',
-    marginVertical: 1,
+    marginVertical: 5,
+    borderWidth:2,
+    borderColor:'#624E88',
+    padding: 10,
+    borderRadius:10,
+    justifyContent:'center',
+    alignItems:'center',
+    height:80,
+    width:100,
   },
 })
