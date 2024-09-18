@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
         marginHorizontal:10,
         borderWidth:1,
-        borderColor:'#FF8343',
+        borderColor:'#624E88',
 
       },
       img:{
@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
         height:100,
         marginRight:10,
         borderRadius:10,
-        borderWidth:1,
-        borderColor:'#FF8343',
         },
       textContainer:{
         flex:1,
