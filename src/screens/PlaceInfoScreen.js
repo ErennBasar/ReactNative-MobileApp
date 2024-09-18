@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     margin:10,
     alignItems:'center',
     borderWidth:2,
-    borderColor:'#f53b57',
+    borderColor:'#624E88',
     borderRadius:10,
   },
   title:{
