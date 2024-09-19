@@ -14,7 +14,7 @@ const CityScreen = ({navigation}) => {
               style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('CityInformationScreen',{cityName:'Istanbul'})}
               >
-            <Text style={styles.buttonText}>istanbul</Text>
+            <Text style={styles.buttonText}>İstanbul</Text>
       </TouchableOpacity>
       <TouchableOpacity 
               style={[styles.button, {backgroundColor:'#ccc'}]} 
@@ -22,6 +22,7 @@ const CityScreen = ({navigation}) => {
               >
             <Text style={styles.buttonText}>Aydın</Text>
       </TouchableOpacity>
+      
     </View>
   )
 }

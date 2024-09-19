@@ -32,6 +32,10 @@ const CityInformationScreen = ({ route,navigation }) => {
               >
             <Text style={styles.buttonText}>Kuşadası</Text>
       </TouchableOpacity>
+     
+      
+     
+      
       
       </View>
       <TouchableOpacity
@@ -75,6 +79,7 @@ const CityInformationScreen = ({ route,navigation }) => {
             <Text style={styles.buttonText}>Fatih</Text>
       </TouchableOpacity>
       
+      
         </View>
         <TouchableOpacity
             style={styles.commentButton}
@@ -88,7 +93,7 @@ const CityInformationScreen = ({ route,navigation }) => {
             style={styles.locationButton}
             onPress={() => navigation.navigate('LocationVerificationScreen', {cityName})}
         >
-          <Text>Konum</Text>
+          <Text>Konum Doğrula</Text>
         </TouchableOpacity>
       
     </View>
@@ -134,9 +139,10 @@ const styles = StyleSheet.create({
   commentButton: {
     backgroundColor: '#536493',
     marginVertical: 10,
+    width: 370,
     padding: 10,
     borderRadius: 10,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     borderWidth:2,
     borderColor:'#4F1787',
@@ -154,8 +160,9 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
     marginVertical: 10,
+    marginHorizontal: 10,
   },
 });

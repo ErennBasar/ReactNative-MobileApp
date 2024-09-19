@@ -32,17 +32,24 @@ export default function HomeScreen({ navigation }) {
               
           <TouchableOpacity 
               
-              style={[styles.button, {backgroundColor:'#fff'}]} 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('LocationScreen')}
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Location Screen</Text>
           </TouchableOpacity>
           <TouchableOpacity 
               
-              style={[styles.button, {backgroundColor:'#fff'}]} 
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
               onPress={() => navigation.navigate('CityScreen')}
               >
             <Text style={[styles.buttonText,{color:'black'}]}>Travel App</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+              
+              style={[styles.button, {backgroundColor:'#ccc'}]} 
+              onPress={() => navigation.navigate('ExampleScreen')}
+              >
+            <Text style={[styles.buttonText,{color:'black'}]}>Example</Text>
           </TouchableOpacity>
         </View>
       </View>

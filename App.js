@@ -31,6 +31,7 @@ import ImageScreen from './src/screens/ImageScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
 import GradientHeader from './components/GradientHeader';
 import DenemeScreen from './src/screens/DenemeScreen';
+import ExampleScreen from './src/screens/ExampleScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -164,6 +165,7 @@ function App() {
         <Stack.Screen name="PlaceInfoScreen" component={PlaceInfoScreen} />
         <Stack.Screen name="ImageScreen" component={ImageScreen} />
         <Stack.Screen name="DenemeScreen" component={DenemeScreen} />
+        <Stack.Screen name="ExampleScreen" component={ExampleScreen} />
         <Stack.Screen 
           name="Drawer" 
           component={DrawerNavigator} 
