@@ -33,7 +33,11 @@ const ExampleScreen = () => {
             </TouchableOpacity>
         </View>
         <View style={styles.goalsContainer} >
-            {goals.map((goal) => <Text key={goal}> {goal}</Text>)}
+            {goals.map((goal) => (
+                <View style={styles.goalItem} key={goal}>
+                    <Text style={styles.goalText}>{goal}</Text>
+                </View>
+            ))}
         </View>
     </View>
   )
@@ -68,5 +72,14 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 15,
         height: 40,
-    }
+    },
+    goalItem:{
+        margin:5,
+        backgroundColor:'coral',
+        borderRadius:10,
+        padding:6,  
+    },
+    goalText:{
+        color:'white',
+    },
 })

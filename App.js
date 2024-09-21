@@ -32,6 +32,7 @@ import FavoritesScreen from './src/screens/FavoritesScreen';
 import GradientHeader from './components/GradientHeader';
 import DenemeScreen from './src/screens/DenemeScreen';
 import ExampleScreen from './src/screens/ExampleScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +57,15 @@ function DrawerNavigator() {
       <Drawer.Screen 
         name="Home" 
         component={HomeScreen}
+        options={{
+          drawerIcon:()=>(
+            <AntDesign name="home" size={24} color="black" />
+          ),
+        }}
+        />
+      <Drawer.Screen 
+        name="Profile" 
+        component={ProfileScreen}
         options={{
           drawerIcon:()=>(
             <AntDesign name="home" size={24} color="black" />
